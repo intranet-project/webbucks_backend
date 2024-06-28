@@ -24,8 +24,9 @@ public class Menu {
 	@Column(name = "menu_name", nullable = false)
 	private String menuName; // 메뉴명
 
-	@Column(name = "menu_category", nullable = false)
-	private String menuCategory; // 카테고리
+	@ManyToOne
+	@JoinColumn(name = "menu_category", nullable = false)
+	private Category category; // 카테고리
 
 	@Column(name = "menu_price", nullable = false)
 	private double menuPrice; // 가격
@@ -37,7 +38,7 @@ public class Menu {
 	private char soldoutState; // 품절여부
 
 	@Column(name = "menu_img", nullable = false, length = 255)
-	private char menuImg; // 메뉴이미지
+	private String menuImg; // 메뉴이미지
 	
 	
 
