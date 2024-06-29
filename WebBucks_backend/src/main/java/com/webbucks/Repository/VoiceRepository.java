@@ -12,5 +12,5 @@ import com.webbucks.Entity.Voice;
  * **/
 
 public interface VoiceRepository extends JpaRepository<Voice, Long>{
-
+    Voice findByVoiceId(long id);
 }

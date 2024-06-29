@@ -6,6 +6,7 @@ import com.webbucks.Repository.CustomerRepository;
 import com.webbucks.Repository.StoreRepository;
 import com.webbucks.Repository.VoiceRepository;
 import com.webbucks.customer.dto.voiceRequestDto;
+import com.webbucks.customer.dto.voiceResponseDto;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,10 @@ public class CustomerServiceImpl implements CustomerService {
         //voice.setEmployee(employee);
 
         voiceRepository.save(voice);
+    }
+
+    @Override
+    public Voice getVoice(long voiceId) {
+        return voiceRepository.findByVoiceId(voiceId);
     }
 }
