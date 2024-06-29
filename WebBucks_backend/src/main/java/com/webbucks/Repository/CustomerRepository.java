@@ -12,5 +12,5 @@ import com.webbucks.Entity.Customer;
  * **/
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-
+    Customer findByCustId(Long customerId);
 }
