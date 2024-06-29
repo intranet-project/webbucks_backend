@@ -27,7 +27,7 @@ public class Voice {
     @JoinColumn(name = "cust_id", nullable = false)
     private Customer customer; // 고객ID
 
-    @Column(name = "voice_date", nullable = false)
+    @Column(name = "voice_date", nullable = true)
     @Temporal(TemporalType.DATE)
     private Date voiceDate; //등록일자
 
@@ -44,14 +44,14 @@ public class Voice {
     @JoinColumn(name = "store_id", nullable = false)
     private Store store; // 매장ID
 
-    @Column(name = "voice_state", nullable = false)
+    @Column(name = "voice_state", nullable = true)
     private String voiceState; // 처리여부
 
-    @Column(name = "answer_date", nullable = false)
+    @Column(name = "answer_date", nullable = true)
     @Temporal(TemporalType.DATE)
     private Date answerDate; // 처리날짜
 
     @ManyToOne
-    @JoinColumn(name = "emp_id", nullable = false)
+    @JoinColumn(name = "emp_id", nullable = true)
     private Employee employee; // 직원ID
 }
