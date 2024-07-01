@@ -1,8 +1,11 @@
 package com.webbucks.Repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.webbucks.Entity.B_OrderState;
+
 
 /**
  * 주문관리 테이블(B_OrderState) 엔티티의 레포지토리
@@ -12,5 +15,5 @@ import com.webbucks.Entity.B_OrderState;
  * **/
 
 public interface B_OrderStateRepository extends JpaRepository<B_OrderState, Long>{
-
+	public List<B_OrderState> findByOrderStoreStoreId(Long store_Id);
 }

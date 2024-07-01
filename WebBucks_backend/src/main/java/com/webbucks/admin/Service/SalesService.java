@@ -1,0 +1,10 @@
+package com.webbucks.admin.Service;
+
+import java.util.ArrayList;
+
+import com.webbucks.admin.dto.react.ReactSalesDto;
+
+public interface SalesService {
+	ArrayList<ReactSalesDto> selectSales(Long store_id);
+	ReactSalesDto updateTotalSales(Long store_id, ReactSalesDto reactSalesDto);
+}

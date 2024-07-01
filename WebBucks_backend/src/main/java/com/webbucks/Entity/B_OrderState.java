@@ -24,7 +24,7 @@ public class B_OrderState {
 
 	@ManyToOne
 	@JoinColumn(name = "b_order_id", nullable = false)
-	private B_Order b_order; // 주문ID
+	private B_Order order; // 주문ID
 
 	@Column(name = "b_order_state", nullable = false)
 	private String b_orderState; // 주문 상태

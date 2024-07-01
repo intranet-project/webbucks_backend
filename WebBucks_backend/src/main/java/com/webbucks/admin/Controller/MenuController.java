@@ -1,6 +1,5 @@
 package com.webbucks.admin.Controller;
 
-import java.awt.print.Book;
 import java.util.ArrayList;
 
 import org.springframework.http.HttpStatus;
@@ -30,10 +29,10 @@ public class MenuController {
         return new ResponseEntity<ArrayList<ReactMenuDto>>(menuService.selectMenu(), HttpStatus.OK); 
     }
 
-//	@PutMapping("/menu/soldout/{menu_id}")
-//    public ResponseEntity<ReactMenuDto> updateMenu(@PathVariable("menu_id") Long menu_id, @RequestBody Menu menu) {
-//        return new ResponseEntity<ReactMenuDto>(), HttpStatus.OK); // 200 응답
-//    }
+	@PutMapping("/menu/soldout/{menu_id}")
+    public ResponseEntity<ReactMenuDto> updateMenu(@PathVariable("menu_id") Long menu_id, @RequestBody ReactMenuDto reactMenuDto) {
+        return new ResponseEntity<ReactMenuDto>(menuService.updateMenu(menu_id,reactMenuDto), HttpStatus.OK); // 200 응답
+    }
 	
 	
 	
