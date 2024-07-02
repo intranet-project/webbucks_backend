@@ -25,7 +25,8 @@ public class MenuServiceImpl implements MenuService {
 				.map(menu -> ReactMenuDto.builder()
 						.menuId(menu.getMenuId())
 						.menuName(menu.getMenuName())
-						.category(menu.getCategory())
+						.categoryId(menu.getCategory().getCategoryId())
+						.categoryname(menu.getCategory().getCategoryname())
 						.menuPrice(menu.getMenuPrice())
 						.menuDetail(menu.getMenuDetail())
 						.soldoutState(menu.getSoldoutState())
@@ -37,14 +38,9 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public ReactMenuDto updateMenu(Long menu_id,ReactMenuDto reactMenuDto) {
-		Menu menu = new Menu();
-		menu.setMenuId(reactMenuDto.getMenuId());
-		menu.setMenuName(reactMenuDto.getMenuName());
-		menu.setCategory(reactMenuDto.getCategory());
-		menu.setMenuPrice(reactMenuDto.getMenuPrice());
-		menu.setMenuDetail(reactMenuDto.getMenuDetail());
+		 Menu menu = menuRepository.findById(menu_id)
+                 .orElseThrow();
 		menu.setSoldoutState(reactMenuDto.getSoldoutState());
-		menu.setMenuImg(reactMenuDto.getMenuImg());
 		menuRepository.save(menu);
 		return reactMenuDto;
 	}

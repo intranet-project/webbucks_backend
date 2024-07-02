@@ -23,13 +23,13 @@ public class OrderController {
 		this.orderService = orderService;
 	}
 	
-	@GetMapping("/b_order/list/{store_id}")
-    public ResponseEntity<ArrayList<ReactOrderDto>> listMenu(@PathVariable("store_id") Long store_id) {
-        return new ResponseEntity<ArrayList<ReactOrderDto>>(orderService.selectOrder(store_id), HttpStatus.OK); 
+	@GetMapping("/b_order/list")
+    public ResponseEntity<ArrayList<ReactOrderDto>> listOrder() {
+        return new ResponseEntity<ArrayList<ReactOrderDto>>(orderService.selectOrder((long)1), HttpStatus.OK); 
     }
 	
 	@PutMapping("/b_order/orderState/{order_status_id}")
-    public ResponseEntity<ReactOrderDto> updateMenu(@PathVariable("order_status_id") Long order_status_id, @RequestBody ReactOrderDto reactOrderDto) {
+    public ResponseEntity<ReactOrderDto> updateOrder(@PathVariable("order_status_id") Long order_status_id, @RequestBody ReactOrderDto reactOrderDto) {
         return new ResponseEntity<ReactOrderDto>(orderService.updateOrder(order_status_id,reactOrderDto), HttpStatus.OK); // 200 응답
     }
 }
