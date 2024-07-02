@@ -22,16 +22,4 @@ public class ReactMenuDto {
 	private String menuDetail; // 메뉴 상세
 	private char soldoutState; // 품절여부
 	private String menuImg; // 메뉴이미지
-	
-	
-	public ReactMenuDto listMenu(Menu menu) {
-		this.menuId = menu.getMenuId();
-		this.menuName = menu.getMenuName();
-		this.category = menu.getCategory();
-		this.menuPrice = menu.getMenuPrice();
-		this.menuDetail = menu.getMenuDetail();
-		this.soldoutState = menu.getSoldoutState();
-		this.menuImg = menu.getMenuImg();
-		return this;
-	}
 }

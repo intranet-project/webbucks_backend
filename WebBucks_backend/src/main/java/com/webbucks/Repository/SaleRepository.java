@@ -12,6 +12,6 @@ import com.webbucks.Entity.Sales;
  * **/
 
 public interface SaleRepository extends JpaRepository<Sales, Long>{
-
+	public Sales findByStoreStoreId(Long store_Id);
 }
 

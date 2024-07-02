@@ -22,11 +22,7 @@ public class Sales {
    @ManyToOne
    @JoinColumn(name = "store_id", nullable = false)
     private Store store; // 매장 ID
-   
-    @ManyToOne
-    @JoinColumn(name = "order_id", nullable = false)
-    private B_Order Border; //주문ID   
 
     @Column(name = "sale_total_amount", nullable = false)
-    private long saleTotalAmount; // 총매출
+    private Long saleTotalAmount; // 총매출
 }
