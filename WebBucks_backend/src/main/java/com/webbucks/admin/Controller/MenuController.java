@@ -31,7 +31,8 @@ public class MenuController {
 
 	@PutMapping("/menu/soldout/{menu_id}")
     public ResponseEntity<ReactMenuDto> updateMenu(@PathVariable("menu_id") Long menu_id, @RequestBody ReactMenuDto reactMenuDto) {
-        return new ResponseEntity<ReactMenuDto>(menuService.updateMenu(menu_id,reactMenuDto), HttpStatus.OK); // 200 응답
+        System.out.println("id : "+menu_id);
+		return new ResponseEntity<ReactMenuDto>(menuService.updateMenu(menu_id,reactMenuDto), HttpStatus.OK); // 200 응답
     }
 	
 	
