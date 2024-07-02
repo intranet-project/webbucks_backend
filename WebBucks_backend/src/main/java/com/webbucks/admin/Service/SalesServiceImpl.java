@@ -27,12 +27,11 @@ public class SalesServiceImpl implements SalesService {
 		List<ReactSalesDto> salesData = b_OrderRepository.findByStoreStoreId(store_id).stream()
 				.map(sales -> ReactSalesDto.builder()
 				.b_orderId(sales.getB_orderId())
-				.customer(sales.getCustomer())
-				.store(sales.getStore())
-				.b_orderTotalAmount(sales.getB_orderTotalAmount())
+				.storeId(sales.getStore().getStoreId())
+				.categoryId(sales.getMenu().getCategory().getCategoryId())
+				.categoryname(sales.getMenu().getCategory().getCategoryname())
 				.b_orderPointsUsed(sales.getB_orderPointsUsed())
-				.b_orderState(sales.getB_orderState())
-				.b_orderCreatedAt(sales.getB_orderCreatedAt())
+				.b_orderCreatedAt(sales.getB_orderCreatedAt())		
 				.build())
 				.collect(Collectors.toList());
 		
@@ -43,9 +42,11 @@ public class SalesServiceImpl implements SalesService {
 	public ReactSalesDto updateTotalSales(Long store_id, ReactSalesDto reactSalesDto) {
 		Sales sales = new Sales();
 		sales = (Sales) saleRepository.findByStoreStoreId(store_id);
-		sales.setSaleTotalAmount(sales.getSaleTotalAmount()+(long)reactSalesDto.getB_orderTotalAmount());
+		sales.setSaleTotalAmount(sales.getSaleTotalAmount()+(long)reactSalesDto.getB_orderPointsUsed());
 		saleRepository.save(sales);
 		return reactSalesDto;
 	}
+
+
 	
 }

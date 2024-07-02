@@ -18,10 +18,9 @@ import lombok.ToString;
 @Builder
 public class ReactSalesDto {
     private Long b_orderId; // 주문ID
-    private Customer customer;	// 고객ID
-    private Store store;	// 매장ID   
-    private double b_orderTotalAmount;	// 총 주문 금액
-    private int b_orderPointsUsed;	// 사용된 포인트 
-    private String b_orderState;	// 주문 상태
+    private Long storeId;	// 매장ID
+    private Long categoryId; // 카테고리
+	private String categoryname; // 카테고리명
+    private int b_orderPointsUsed;	// 사용된 포인트
     private Date b_orderCreatedAt;	// 주문 일자
 }

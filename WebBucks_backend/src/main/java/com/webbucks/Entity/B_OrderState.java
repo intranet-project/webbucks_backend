@@ -30,6 +30,6 @@ public class B_OrderState {
 	private String b_orderState; // 주문 상태
 
 	@Column(name = "b_order_state_update_at", nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date b_orderStateUpdateAt; // 주문 상태 업데이트 일자
 }

@@ -24,13 +24,13 @@ public class SalesController {
 		this.salesService = salesService;
 	}
 	
-	@GetMapping("/sales/list/{store_id}")
-    public ResponseEntity<ArrayList<ReactSalesDto>> listMenu(@PathVariable("store_id") Long store_id) {
-        return new ResponseEntity<ArrayList<ReactSalesDto>>(salesService.selectSales(store_id), HttpStatus.OK); 
+	@GetMapping("/sales/list")
+    public ResponseEntity<ArrayList<ReactSalesDto>> listSales() {
+        return new ResponseEntity<ArrayList<ReactSalesDto>>(salesService.selectSales((long)1), HttpStatus.OK); 
     }
 	
 	@PutMapping("/sales/totalsales/{store_id}")
-    public ResponseEntity<ReactSalesDto> updateMenu(@PathVariable("store_id") Long store_id, @RequestBody ReactSalesDto reactSalesDto) {
+    public ResponseEntity<ReactSalesDto> updateSales(@PathVariable("store_id") Long store_id, @RequestBody ReactSalesDto reactSalesDto) {
         return new ResponseEntity<ReactSalesDto>(salesService.updateTotalSales(store_id,reactSalesDto), HttpStatus.OK); // 200 응답
     }
 }
