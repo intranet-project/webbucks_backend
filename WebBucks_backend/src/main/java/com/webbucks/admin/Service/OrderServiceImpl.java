@@ -1,5 +1,6 @@
 package com.webbucks.admin.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,14 +27,16 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	public ArrayList<ReactOrderDto> selectOrder(Long store_id) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
 		List<ReactOrderDto> orderData = b_OrderStateRepository.findByOrderStoreStoreId(store_id).stream()
 				.map(order -> ReactOrderDto.builder()
 				.b_orderStatusId(order.getB_orderStatusId())
 				.b_orderId(order.getOrder().getB_orderId())
 				.custId(order.getOrder().getCustomer().getCustId())
 				.menuName(order.getOrder().getMenu().getMenuName())
-				.b_orderCreatedAt(order.getOrder().getB_orderCreatedAt())
-				.b_orderStateUpdateAt(order.getB_orderStateUpdateAt())
+				.b_orderCreatedAt(sdf.format(order.getOrder().getB_orderCreatedAt()))
+				.b_orderStateUpdateAt(sdf.format(order.getB_orderStateUpdateAt()))
 				.b_orderState(order.getB_orderState())
 				.build())
 				.collect(Collectors.toList());
@@ -45,8 +48,10 @@ public class OrderServiceImpl implements OrderService {
 	public ReactOrderDto updateOrder(Long order_status_id, ReactOrderDto reactOrderDto) {
 			B_OrderState b_orderState = b_OrderStateRepository.findById(order_status_id)
 					.orElseThrow();
-			B_Order b_order = b_OrderRepository.findById(reactOrderDto.getB_orderId()).orElseThrow();
+			B_Order b_order = b_OrderRepository.findById(reactOrderDto.getB_orderId())
+					.orElseThrow();
 			Date now = new Date();
+				
 			b_orderState.setB_orderState(reactOrderDto.getB_orderState());
 			b_orderState.setB_orderStateUpdateAt(now);
 			b_order.setB_orderState(reactOrderDto.getB_orderState());
