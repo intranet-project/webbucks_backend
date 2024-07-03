@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webbucks.admin.Service.OrderService;
+import com.webbucks.admin.Service.ReactOrderService;
 import com.webbucks.admin.dto.react.ReactOrderDto;
 
 @RestController
 @RequestMapping(value = "/api/v1")
-public class OrderController {
-	private final OrderService orderService;
+public class ReactOrderController {
+	private final ReactOrderService orderService;
 	
-	public OrderController(OrderService orderService) {
+	public ReactOrderController(ReactOrderService orderService) {
 		this.orderService = orderService;
 	}
 	

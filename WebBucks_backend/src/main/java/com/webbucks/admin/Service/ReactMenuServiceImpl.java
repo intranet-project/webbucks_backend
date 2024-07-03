@@ -11,11 +11,11 @@ import com.webbucks.Repository.MenuRepository;
 import com.webbucks.admin.dto.react.ReactMenuDto;
 
 @Service
-public class MenuServiceImpl implements MenuService {
+public class ReactMenuServiceImpl implements ReactMenuService {
 
 	private final MenuRepository menuRepository;
 	
-	public MenuServiceImpl(MenuRepository menuRepository) {
+	public ReactMenuServiceImpl(MenuRepository menuRepository) {
 		this.menuRepository = menuRepository;
 	}
 

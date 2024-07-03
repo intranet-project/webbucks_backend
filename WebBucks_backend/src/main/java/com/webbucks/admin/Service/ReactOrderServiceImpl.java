@@ -15,12 +15,12 @@ import com.webbucks.Repository.B_OrderStateRepository;
 import com.webbucks.admin.dto.react.ReactOrderDto;
 
 @Service
-public class OrderServiceImpl implements OrderService {
+public class ReactOrderServiceImpl implements ReactOrderService {
 	
 	private final B_OrderRepository b_OrderRepository;
 	private final B_OrderStateRepository b_OrderStateRepository;
 	
-	public OrderServiceImpl(B_OrderStateRepository b_OrderStateRepository, B_OrderRepository b_OrderRepository) {
+	public ReactOrderServiceImpl(B_OrderStateRepository b_OrderStateRepository, B_OrderRepository b_OrderRepository) {
 		this.b_OrderStateRepository = b_OrderStateRepository;
 		this.b_OrderRepository = b_OrderRepository;
 	}

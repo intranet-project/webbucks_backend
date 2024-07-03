@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.webbucks.admin.dto.react.ReactSalesDto;
 
-public interface SalesService {
+public interface ReactSalesService {
 	ArrayList<ReactSalesDto> selectSales(Long store_id);
 	ReactSalesDto updateTotalSales(Long store_id, ReactSalesDto reactSalesDto);
 }

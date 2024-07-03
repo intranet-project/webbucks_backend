@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webbucks.admin.Service.MenuService;
+import com.webbucks.admin.Service.ReactMenuService;
 import com.webbucks.admin.dto.react.ReactMenuDto;
 
 @RestController
 @RequestMapping(value = "/api/v1")
-public class MenuController {
+public class ReactMenuController {
 
-	private final MenuService menuService;
+	private final ReactMenuService menuService;
 
-	public MenuController(MenuService menuService) {
+	public ReactMenuController(ReactMenuService menuService) {
 		this.menuService = menuService;
 	}
 	

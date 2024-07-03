@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.webbucks.admin.Service.SalesService;
+import com.webbucks.admin.Service.ReactSalesService;
 import com.webbucks.admin.dto.react.ReactSalesDto;
 
 @RestController
 @RequestMapping(value = "/api/v1")
-public class SalesController {
-	private final SalesService salesService;
+public class ReactSalesController {
+	private final ReactSalesService salesService;
 	
-	public SalesController(SalesService salesService) {
+	public ReactSalesController(ReactSalesService salesService) {
 		this.salesService = salesService;
 	}
 	
