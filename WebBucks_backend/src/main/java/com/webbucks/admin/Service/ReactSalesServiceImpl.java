@@ -13,12 +13,12 @@ import com.webbucks.Repository.SaleRepository;
 import com.webbucks.admin.dto.react.ReactSalesDto;
 
 @Service
-public class SalesServiceImpl implements SalesService {
+public class ReactSalesServiceImpl implements ReactSalesService {
 	
 	private final B_OrderRepository b_OrderRepository;
 	private final SaleRepository saleRepository;
 	
-	public SalesServiceImpl(B_OrderRepository b_OrderRepository, SaleRepository saleRepository) {
+	public ReactSalesServiceImpl(B_OrderRepository b_OrderRepository, SaleRepository saleRepository) {
 		this.b_OrderRepository = b_OrderRepository;
 		this.saleRepository = saleRepository;
 	}
