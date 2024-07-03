@@ -2,9 +2,6 @@ package com.webbucks.admin.dto.react;
 
 import java.util.Date;
 
-import com.webbucks.Entity.Customer;
-import com.webbucks.Entity.Store;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -43,13 +43,15 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public ReactOrderDto updateOrder(Long order_status_id, ReactOrderDto reactOrderDto) {
-//			B_OrderState b_orderState = b_OrderStateRepository.findById(order_status_id)
-//					.orElseThrow();
-//			B_Order b_d
-//			Date now = new Date();
-//			b_orderState.setB_orderState(reactOrderDto.getB_orderState());
-//			b_orderState.setB_orderStateUpdateAt(now);
-//			b_OrderStateRepository.save(b_orderState);
+			B_OrderState b_orderState = b_OrderStateRepository.findById(order_status_id)
+					.orElseThrow();
+			B_Order b_order = b_OrderRepository.findById(reactOrderDto.getB_orderId()).orElseThrow();
+			Date now = new Date();
+			b_orderState.setB_orderState(reactOrderDto.getB_orderState());
+			b_orderState.setB_orderStateUpdateAt(now);
+			b_order.setB_orderState(reactOrderDto.getB_orderState());
+			b_OrderStateRepository.save(b_orderState);
+			b_OrderRepository.save(b_order);
 			return reactOrderDto;
 	}
 

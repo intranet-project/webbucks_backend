@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.webbucks.admin.Service.SalesService;
-import com.webbucks.admin.dto.react.ReactOrderDto;
 import com.webbucks.admin.dto.react.ReactSalesDto;
 
 @RestController
@@ -29,7 +28,8 @@ public class SalesController {
         return new ResponseEntity<ArrayList<ReactSalesDto>>(salesService.selectSales((long)1), HttpStatus.OK); 
     }
 	
-	@PutMapping("/sales/totalsales/{store_id}")
+	//안드로이드와 api통신 떄 사용해야하는듯
+	@PutMapping("/sales/totalsales/{store_id}") 
     public ResponseEntity<ReactSalesDto> updateSales(@PathVariable("store_id") Long store_id, @RequestBody ReactSalesDto reactSalesDto) {
         return new ResponseEntity<ReactSalesDto>(salesService.updateTotalSales(store_id,reactSalesDto), HttpStatus.OK); // 200 응답
     }
