@@ -1,5 +1,6 @@
 package com.webbucks.admin.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +25,7 @@ public class SalesServiceImpl implements SalesService {
 
 	@Override
 	public ArrayList<ReactSalesDto> selectSales(Long store_id) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		List<ReactSalesDto> salesData = b_OrderRepository.findByStoreStoreId(store_id).stream()
 				.map(sales -> ReactSalesDto.builder()
 				.b_orderId(sales.getB_orderId())
@@ -31,7 +33,7 @@ public class SalesServiceImpl implements SalesService {
 				.categoryId(sales.getMenu().getCategory().getCategoryId())
 				.categoryname(sales.getMenu().getCategory().getCategoryname())
 				.b_orderPointsUsed(sales.getB_orderPointsUsed())
-				.b_orderCreatedAt(sales.getB_orderCreatedAt())		
+				.b_orderCreatedAt(sdf.format(sales.getB_orderCreatedAt()))		
 				.build())
 				.collect(Collectors.toList());
 		
