@@ -32,8 +32,8 @@ public class VoiceController {
 
     // intranet에서 요청이 들어왔을때(서버통신시)
     @GetMapping("/getvoice")
-    public Voice getVoice(@RequestParam("id") long voiceId) {
-        return voiceService.getVoice(voiceId);
+    public List<Voice> getVoice() {
+        return voiceService.getVoice();
     }
 
     //------------------------------------------

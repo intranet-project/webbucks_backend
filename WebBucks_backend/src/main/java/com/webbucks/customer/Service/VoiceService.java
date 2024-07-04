@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VoiceService {
     String saveVoice(voiceRequestDto voice);
-    Voice getVoice(long voiceId);
+    List<Voice> getVoice();
 
     String getAnswer(long voiceId);
     List<Voice> selectAllVoice();
