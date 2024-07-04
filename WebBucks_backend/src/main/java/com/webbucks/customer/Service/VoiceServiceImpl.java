@@ -8,6 +8,9 @@ import com.webbucks.Repository.VoiceRepository;
 import com.webbucks.customer.dto.voiceRequestDto;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -62,11 +65,17 @@ public class VoiceServiceImpl implements VoiceService {
 
 
     @Override
-    public String getAnswer(long voiceId) {
-        String url = "http://localhost:9000/v1/intrabucks/customer/answer?id="+voiceId;
-        Voice voice = restTemplate.getForObject(url, Voice.class);
-       voiceRepository.save(voice);
-        return "Succes";
+    public String getAnswer(long custId) {
+        String url = "http://localhost:9000/api/v1/intrabucks/customer/getanswer?custId="+custId;
+        ResponseEntity<List<Voice>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Voice>>() {}
+        );
+        List<Voice> voices = response.getBody();
+        voiceRepository.saveAll(voices);
+        return "Success";
     }
 
 
