@@ -9,7 +9,7 @@ public interface VoiceService {
     String saveVoice(voiceRequestDto voice);
     List<Voice> getVoice();
 
-    String getAnswer(long voiceId);
+    String getAnswer(long custId);
     List<Voice> selectAllVoice();
 
 }

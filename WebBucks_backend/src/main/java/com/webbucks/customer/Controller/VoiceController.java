@@ -11,7 +11,11 @@ import org.slf4j.LoggerFactory;
 import com.webbucks.customer.Service.VoiceService;
 
 import java.util.List;
-
+/** 고객의 소리 Controller, 리액트 서버(프론트), 인트라넷 서버와 통신
+ * @author  최유빈
+ * @version 1.3
+ * @since 2024.07.04
+ * */
 @RestController
 @RequestMapping("/api/customer")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -36,15 +40,17 @@ public class VoiceController {
         return voiceService.getVoice();
     }
 
-    //------------------------------------------
+
+    /** 공홈에서 고객의 소리 답변 확인 */
 
     /* 리액트에서 조회 요청이 들어왔을 때 intranet에서 답변 받아오고 저장 */
     @GetMapping("/answer")
-    public List<Voice> answer(@RequestParam long voiceId) {
-        voiceService.getAnswer(voiceId);
+    public List<Voice> answer(@RequestParam("custId") long custId) {
+        voiceService.getAnswer(custId);
         return voiceService.selectAllVoice();
     }
-//
+//------------------------------------------
+
 //    /* 공홈 리액트에서 답변 조회*/
 //    @GetMapping("/getanswer")
 //    public List<Voice> getanswer(@RequestParam int voiceId) {
