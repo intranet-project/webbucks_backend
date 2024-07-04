@@ -10,8 +10,10 @@ import org.slf4j.LoggerFactory;
 
 import com.webbucks.customer.Service.VoiceService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 @CrossOrigin(origins = "http://localhost:3000")
 public class VoiceController {
 
@@ -34,7 +36,22 @@ public class VoiceController {
         return voiceService.getVoice(voiceId);
     }
 
-//    /* intranet에서 답변 받아오기 */
+    //------------------------------------------
+
+    /* 리액트에서 조회 요청이 들어왔을 때 intranet에서 답변 받아오고 저장 */
+    @GetMapping("/answer")
+    public List<Voice> answer(@RequestParam long voiceId) {
+        voiceService.getAnswer(voiceId);
+        return voiceService.selectAllVoice();
+    }
+//
+//    /* 공홈 리액트에서 답변 조회*/
+//    @GetMapping("/getanswer")
+//    public List<Voice> getanswer(@RequestParam int voiceId) {
+//        public List<Voice> getVoice() {
+//            return voiceService.selectAllVoice();
+//        }
+//}
 //    @PostMapping("/voiceAnswer")
 //    public String saveAnswer(@RequestBody voiceResponseDto voice) {
 //        return voiceService.saveAnswer(Answer);
