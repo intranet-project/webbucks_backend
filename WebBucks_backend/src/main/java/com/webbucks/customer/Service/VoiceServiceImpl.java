@@ -54,8 +54,8 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
     @Override
-    public Voice getVoice(long voiceId) {
-        return voiceRepository.findByVoiceId(voiceId);
+    public List<Voice> getVoice() {
+        return voiceRepository.findAll();
     }
     // --------------------------------------
 
