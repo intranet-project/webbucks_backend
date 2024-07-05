@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.webbucks.Entity.Menu;
 import com.webbucks.Repository.MenuRepository;
-import com.webbucks.admin.dto.react.ReactMenuDto;
+import com.webbucks.admin.dto.ReactMenuDto;
 
 @Service
 public class ReactMenuServiceImpl implements ReactMenuService {

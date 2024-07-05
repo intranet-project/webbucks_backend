@@ -1,5 +1,6 @@
 package com.webbucks.admin.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.webbucks.Entity.OrderItem;
-import com.webbucks.admin.Service.AndroidOrderItemOrderItemsService;
+import com.webbucks.admin.Service.AndroidOrderItemService;
+import com.webbucks.admin.dto.AndroidOrderItemDto;
 
 @RestController
 @RequestMapping("/api/order-items")
 public class AndroidOrderItemController {
 
     @Autowired
-    private AndroidOrderItemOrderItemsService orderItemsService;
+    private AndroidOrderItemService orderItemsService;
 
     @GetMapping
     public List<OrderItem> getAllOrderItems() {
@@ -33,9 +35,9 @@ public class AndroidOrderItemController {
     }
 
     @PostMapping("/batch")
-    public ResponseEntity<List<OrderItem>> saveOrderItems(@RequestBody List<OrderItem> orderItem) {
+    public ResponseEntity<ArrayList<AndroidOrderItemDto>> saveOrderItems(@RequestBody ArrayList<AndroidOrderItemDto> androidOrderItemDto) {
         try {
-            return ResponseEntity.ok(orderItemsService.saveOrderItems(orderItem));
+            return ResponseEntity.ok(orderItemsService.saveOrderItems(androidOrderItemDto));
         } catch (Exception e) {
             return ResponseEntity.status(500).build();
         }

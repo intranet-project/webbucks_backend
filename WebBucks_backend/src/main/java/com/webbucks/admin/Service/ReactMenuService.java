@@ -2,7 +2,7 @@ package com.webbucks.admin.Service;
 
 import java.util.ArrayList;
 
-import com.webbucks.admin.dto.react.ReactMenuDto;
+import com.webbucks.admin.dto.ReactMenuDto;
 
 public interface ReactMenuService {
 	ArrayList<ReactMenuDto> selectMenu();

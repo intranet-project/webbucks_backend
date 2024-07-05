@@ -12,7 +12,7 @@ import com.webbucks.Entity.B_Order;
 import com.webbucks.Entity.B_OrderState;
 import com.webbucks.Repository.B_OrderRepository;
 import com.webbucks.Repository.B_OrderStateRepository;
-import com.webbucks.admin.dto.react.ReactOrderDto;
+import com.webbucks.admin.dto.ReactOrderDto;
 
 @Service
 public class ReactOrderServiceImpl implements ReactOrderService {
@@ -50,8 +50,8 @@ public class ReactOrderServiceImpl implements ReactOrderService {
 					.orElseThrow();
 			B_Order b_order = b_OrderRepository.findById(reactOrderDto.getB_orderId())
 					.orElseThrow();
+			
 			Date now = new Date();
-				
 			b_orderState.setB_orderState(reactOrderDto.getB_orderState());
 			b_orderState.setB_orderStateUpdateAt(now);
 			b_order.setB_orderState(reactOrderDto.getB_orderState());

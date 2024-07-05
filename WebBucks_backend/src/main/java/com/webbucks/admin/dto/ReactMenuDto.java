@@ -1,4 +1,4 @@
-package com.webbucks.admin.dto.react;
+package com.webbucks.admin.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,12 +1,13 @@
 package com.webbucks.admin.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.webbucks.Entity.B_Order;
+import com.webbucks.admin.dto.AndroidOrderDto;
 
 public interface AndroidOrderService {
-    List<B_Order> getAllOrders();
+	ArrayList<AndroidOrderDto> getAllOrders();
     B_Order getOrderById(Long id);
-    B_Order saveOrder(B_Order order);
+    AndroidOrderDto saveOrder(AndroidOrderDto androidOrderDto);
     void deleteOrder(Long id);
 }

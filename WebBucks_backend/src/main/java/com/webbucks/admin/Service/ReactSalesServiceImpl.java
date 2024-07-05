@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.webbucks.Entity.Sales;
 import com.webbucks.Repository.B_OrderRepository;
 import com.webbucks.Repository.SaleRepository;
-import com.webbucks.admin.dto.react.ReactSalesDto;
+import com.webbucks.admin.dto.ReactSalesDto;
 
 @Service
 public class ReactSalesServiceImpl implements ReactSalesService {

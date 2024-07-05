@@ -1,12 +1,15 @@
 package com.webbucks.admin.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webbucks.Entity.Store;
 import com.webbucks.Repository.StoreRepository;
+import com.webbucks.admin.dto.AndroidStoreDto;
 
 @Service
 public class AndroidStoreServiceImpl implements AndroidStoreService {
@@ -15,8 +18,18 @@ public class AndroidStoreServiceImpl implements AndroidStoreService {
     private StoreRepository storeRepository;
 
     @Override
-    public List<Store> getAllStores() {
-        return storeRepository.findAll();
+    public ArrayList<AndroidStoreDto> getAllStores() {
+        	List<AndroidStoreDto> storeData = storeRepository.findAll().stream()
+    				.map(store -> AndroidStoreDto.builder()
+    						.store_id(store.getStoreId())
+    						.store_name(store.getStoreName())
+    						.store_address(store.getStoreAddress())
+    						.store_latitude(store.getStoreLatitude())
+    						.store_longitude(store.getStoreLongitude())
+    						.isFavorite(false).build())
+    				.collect(Collectors.toList());
+            return (ArrayList<AndroidStoreDto>) storeData;
+        
     }
 
     @Override
