@@ -24,7 +24,7 @@ public class B_Order {
     private Long b_orderId; // 주문ID
     
 	@ManyToOne
-    @JoinColumn(name = "menu_id", nullable = false)
+    @JoinColumn(name = "menu_id", nullable = true)
     private Menu menu; // 메뉴ID
 
     @ManyToOne
@@ -35,12 +35,8 @@ public class B_Order {
     @JoinColumn(name = "store_id", nullable = false)
     private Store store;	// 매장ID   
     
-	/*
-	 * @Column(name = "b_order_total_amount", nullable = false, precision = 10,
-	 * scale = 2) private double b_orderTotalAmount; // 총 주문 금액
-	 */
-//    @Column(name = "menu_name", nullable = false)
-//    private String menuName; //메뉴명
+    @Column(name = "order_quantity", nullable = false)
+    private int b_order_quantity;	// 주문 상태
     
     @Column(name = "b_order_points_used", nullable = true)
     private int b_orderPointsUsed;	// 사용된 포인트 

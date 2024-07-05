@@ -1,22 +1,48 @@
 package com.webbucks.admin.Service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.webbucks.Entity.B_Order;
+import com.webbucks.Entity.B_OrderState;
+import com.webbucks.Entity.Customer;
+import com.webbucks.Entity.Menu;
+import com.webbucks.Entity.Store;
 import com.webbucks.Repository.B_OrderRepository;
+import com.webbucks.Repository.B_OrderStateRepository;
+import com.webbucks.admin.dto.AndroidOrderDto;
 
 @Service
 public class AndroidOrderServiceImpl implements AndroidOrderService {
 
     @Autowired
     private B_OrderRepository b_orderRepository;
-
+    
+    @Autowired
+    private B_OrderStateRepository b_orderStateRepository;
+    
     @Override
-    public List<B_Order> getAllOrders() {
-        return b_orderRepository.findAll();
+    public ArrayList<AndroidOrderDto> getAllOrders() {
+    	List<AndroidOrderDto> orderData = b_orderRepository.findAll().stream()
+				.map(order -> AndroidOrderDto.builder()
+						.order_id(order.getB_orderId())
+						.cust_id(order.getCustomer().getCustId())
+						.store_id(order.getStore().getStoreId())
+						.store_name(order.getStore().getStoreName())
+						.menu_id(order.getMenu().getMenuId())
+						.menu_name(order.getMenu().getMenuName())
+						.order_quantity(order.getB_order_quantity())
+						.order_total_amount(order.getB_orderPointsUsed())
+						.order_points_used(order.getB_orderPointsUsed())
+						.order_status(order.getB_orderState())
+						.order_created_at(order.getB_orderCreatedAt()).build())
+				.collect(Collectors.toList());
+        return (ArrayList<AndroidOrderDto>) orderData;
     }
 
     @Override
@@ -25,8 +51,36 @@ public class AndroidOrderServiceImpl implements AndroidOrderService {
     }
 
     @Override
-    public B_Order saveOrder(B_Order order) {
-        return b_orderRepository.save(order);
+    public AndroidOrderDto saveOrder(AndroidOrderDto androidOrderDto) {
+    	B_Order order = new B_Order(); 
+    	B_OrderState orderState = new B_OrderState();
+    	Store store = new Store(); 
+    	Customer customer = new Customer();
+    	Menu menu = new Menu();
+    	
+    	menu.setMenuId(androidOrderDto.getMenu_id() == 0 ? null: androidOrderDto.getMenu_id());
+    	customer.setCustId(androidOrderDto.getCust_id());
+    	store.setStoreId(androidOrderDto.getStore_id());
+    	
+    	 
+    	
+    	order.setMenu(menu);
+    	order.setCustomer(customer);
+    	order.setStore(store);
+    	order.setB_order_quantity(androidOrderDto.getOrder_quantity());
+    	order.setB_orderPointsUsed(androidOrderDto.getOrder_points_used());
+    	order.setB_orderState(androidOrderDto.getOrder_status());
+    	order.setB_orderCreatedAt(androidOrderDto.getOrder_created_at());
+    	
+    	Date now = new Date();
+    	orderState.setOrder(order);
+    	orderState.setB_orderState(order.getB_orderState());
+    	orderState.setB_orderStateUpdateAt(now);
+    	System.out.println("여기? :" +androidOrderDto);
+    	System.out.println("여기? :" +order);
+    	b_orderRepository.save(order);
+    	b_orderStateRepository.save(orderState);
+        return androidOrderDto;
     }
 
     @Override

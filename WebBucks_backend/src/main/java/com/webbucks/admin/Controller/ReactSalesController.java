@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.webbucks.admin.Service.ReactSalesService;
-import com.webbucks.admin.dto.react.ReactSalesDto;
+import com.webbucks.admin.dto.ReactSalesDto;
 
 @RestController
 @RequestMapping(value = "/api/v1")

@@ -1,13 +1,15 @@
 package com.webbucks.admin.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.webbucks.Entity.Customer;
+import com.webbucks.admin.dto.AndroidCustomerDto;
 
 public interface AndroidCustomerService {
-    List<Customer> getAllCustomers();
+	ArrayList<AndroidCustomerDto> getAllCustomers();
     Customer getCustomerById(Long id);
-    Customer saveCustomer(Customer customer);
+    AndroidCustomerDto saveCustomer(AndroidCustomerDto customer);
     List<Customer> saveAllCustomers(List<Customer> customers);
     void deleteCustomer(Long id);
 }

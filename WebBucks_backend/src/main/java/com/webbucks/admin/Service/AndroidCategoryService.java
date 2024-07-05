@@ -1,12 +1,13 @@
 package com.webbucks.admin.Service;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.webbucks.Entity.Category;
+import com.webbucks.admin.dto.AndroidCategoryDto;
 
 public interface AndroidCategoryService {
-    List<Category> getAllCategories();
-    Category getCategoryById(Long id);
+    ArrayList<AndroidCategoryDto> getAllCategories();
+    AndroidCategoryDto getCategoryById(Long id);
     Category saveCategory(Category category);
     void deleteCategory(Long id);
 }

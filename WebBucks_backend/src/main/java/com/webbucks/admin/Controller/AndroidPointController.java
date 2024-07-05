@@ -1,6 +1,6 @@
 package com.webbucks.admin.Controller;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.webbucks.Entity.Point;
 import com.webbucks.admin.Service.AndroidPointService;
+import com.webbucks.admin.dto.AndroidPointDto;
 
 @RestController
 @RequestMapping("/api/points")
@@ -24,12 +25,12 @@ public class AndroidPointController {
     private AndroidPointService pointsService;
 
     @PostMapping
-    public ResponseEntity<Point> savePoints(@RequestBody Point points) {
-        return ResponseEntity.ok(pointsService.savePoints(points));
+    public ResponseEntity<AndroidPointDto> savePoints(@RequestBody AndroidPointDto androidPointDto) {
+        return ResponseEntity.ok(pointsService.savePoints(androidPointDto));
     }
 
     @GetMapping
-    public ResponseEntity<List<Point>> getAllPoints() {
+    public ResponseEntity<ArrayList<AndroidPointDto>> getAllPoints() {
         return ResponseEntity.ok(pointsService.getAllPoints());
     }
 
@@ -52,7 +53,7 @@ public class AndroidPointController {
 
     // 포인트 데이터를 받아오는 엔드포인트 추가
     @PostMapping("/receive")
-    public ResponseEntity<Point> receivePoints(@RequestBody Point points) {
-        return ResponseEntity.ok(pointsService.savePoints(points));
+    public ResponseEntity<AndroidPointDto> receivePoints(@RequestBody AndroidPointDto androidPointDto) {
+        return ResponseEntity.ok(pointsService.savePoints(androidPointDto));
     }
 }

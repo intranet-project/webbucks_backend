@@ -2,7 +2,7 @@ package com.webbucks.admin.Service;
 
 import java.util.ArrayList;
 
-import com.webbucks.admin.dto.react.ReactOrderDto;
+import com.webbucks.admin.dto.ReactOrderDto;
 
 public interface ReactOrderService {
 	ArrayList<ReactOrderDto> selectOrder(Long store_id);
