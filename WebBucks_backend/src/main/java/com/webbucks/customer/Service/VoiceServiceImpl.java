@@ -60,8 +60,6 @@ public class VoiceServiceImpl implements VoiceService {
     public List<Voice> getVoice() {
         return voiceRepository.findAll();
     }
-    // --------------------------------------
-
 
 
     @Override
@@ -78,11 +76,23 @@ public class VoiceServiceImpl implements VoiceService {
         return "Success";
     }
 
+    @Override
+    public String getAnswer2() {
+        String url = "http://localhost:9000/api/v1/intrabucks/customer/getanswer2";
+        ResponseEntity<List<Voice>> response = restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Voice>>() {}
+        );
+        List<Voice> voices = response.getBody();
+        voiceRepository.saveAll(voices);
+        return "Success";
+    }
 
     /*리액트로 보내는 고객의 소리와 답변*/
     @Override
     public List<Voice> selectAllVoice() {
-       // return List.of();
         return voiceRepository.findAll();
     }
 }
