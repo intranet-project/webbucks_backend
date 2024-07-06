@@ -17,7 +17,7 @@ import java.util.List;
  * @since 2024.07.04
  * */
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/api/v1/webbucks/customer")
 @CrossOrigin(origins = "http://localhost:3000")
 public class VoiceController {
 
@@ -34,12 +34,11 @@ public class VoiceController {
         return voiceService.saveVoice(voice);
     }
 
-    // intranet에서 요청이 들어왔을때(서버통신시)
+    /* intranet에서 요청이 들어왔을때(서버통신시) */
     @GetMapping("/getvoice")
     public List<Voice> getVoice() {
         return voiceService.getVoice();
     }
-
 
     /** 공홈에서 고객의 소리 답변 확인 */
 
@@ -49,23 +48,14 @@ public class VoiceController {
         voiceService.getAnswer(custId);
         return voiceService.selectAllVoice();
     }
-//------------------------------------------
+    /* 인트라넷, 공홈 Voice 테이블 동기화*/
+    @GetMapping("/answer2")
+    public List<Voice> answer2() {
+        voiceService.getAnswer2();
+        return voiceService.selectAllVoice();
+    }
 
-//    /* 공홈 리액트에서 답변 조회*/
-//    @GetMapping("/getanswer")
-//    public List<Voice> getanswer(@RequestParam int voiceId) {
-//        public List<Voice> getVoice() {
-//            return voiceService.selectAllVoice();
-//        }
-//}
-//    @PostMapping("/voiceAnswer")
-//    public String saveAnswer(@RequestBody voiceResponseDto voice) {
-//        return voiceService.saveAnswer(Answer);
-//    }
-//    /* 리액트로 답변 보내기 */
-//    @GetMapping("/voiceAnswer")
-//    public String sendAnswer(@RequestParam("id") long voiceId) {
-//        return voiceService.sendAnswer(Answer);
-//    }
+
+
 }
 
