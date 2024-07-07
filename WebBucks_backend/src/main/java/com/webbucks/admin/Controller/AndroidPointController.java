@@ -26,7 +26,7 @@ public class AndroidPointController {
 
     @PostMapping
     public ResponseEntity<AndroidPointDto> savePoints(@RequestBody AndroidPointDto androidPointDto) {
-        return ResponseEntity.ok(pointsService.savePoints(androidPointDto));
+    	return ResponseEntity.ok(pointsService.savePoints(androidPointDto));
     }
 
     @GetMapping
@@ -54,6 +54,6 @@ public class AndroidPointController {
     // 포인트 데이터를 받아오는 엔드포인트 추가
     @PostMapping("/receive")
     public ResponseEntity<AndroidPointDto> receivePoints(@RequestBody AndroidPointDto androidPointDto) {
-        return ResponseEntity.ok(pointsService.savePoints(androidPointDto));
+    	return ResponseEntity.ok(pointsService.savePoints(androidPointDto));
     }
 }

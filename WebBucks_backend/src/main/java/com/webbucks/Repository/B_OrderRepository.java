@@ -16,5 +16,6 @@ import com.webbucks.Entity.B_OrderState;
 
 public interface B_OrderRepository extends JpaRepository<B_Order, Long>{
 	public List<B_Order> findByStoreStoreId(Long store_Id);
+	public List<B_Order> findByStoreStoreIdAndOrderState(Long store_Id, String orderState);
 }
 

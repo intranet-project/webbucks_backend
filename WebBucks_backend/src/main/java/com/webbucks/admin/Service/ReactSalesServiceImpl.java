@@ -28,12 +28,12 @@ public class ReactSalesServiceImpl implements ReactSalesService {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		List<ReactSalesDto> salesData = b_OrderRepository.findByStoreStoreId(store_id).stream()
 				.map(sales -> ReactSalesDto.builder()
-				.b_orderId(sales.getB_orderId())
+				.orderId(sales.getB_orderId())
 				.storeId(sales.getStore().getStoreId())
 				.categoryId(sales.getMenu().getCategory().getCategoryId())
 				.categoryname(sales.getMenu().getCategory().getCategoryname())
-				.b_orderPointsUsed(sales.getB_orderPointsUsed())
-				.b_orderCreatedAt(sdf.format(sales.getB_orderCreatedAt()))		
+				.orderPointsUsed(sales.getOrderPointsUsed())
+				.orderCreatedAt(sdf.format(sales.getOrderCreatedAt()))		
 				.build())
 				.collect(Collectors.toList());
 		
@@ -44,7 +44,7 @@ public class ReactSalesServiceImpl implements ReactSalesService {
 	public ReactSalesDto updateTotalSales(Long store_id, ReactSalesDto reactSalesDto) {
 		Sales sales = new Sales();
 		sales = (Sales) saleRepository.findByStoreStoreId(store_id);
-		sales.setSaleTotalAmount(sales.getSaleTotalAmount()+(long)reactSalesDto.getB_orderPointsUsed());
+		sales.setSaleTotalAmount(sales.getSaleTotalAmount()+(long)reactSalesDto.getOrderPointsUsed());
 		saleRepository.save(sales);
 		return reactSalesDto;
 	}
