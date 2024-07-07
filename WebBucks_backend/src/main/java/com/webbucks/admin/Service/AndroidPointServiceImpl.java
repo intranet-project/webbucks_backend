@@ -24,7 +24,7 @@ public class AndroidPointServiceImpl implements AndroidPointService {
     	Point point = new Point();
     	Customer customer = new Customer();
     	customer.setCustId(androidPointDto.getCust_id());
-    	
+    	point.setPointId(androidPointDto.getPoint_id());
     	point.setCustomer(customer);
     	point.setPoints(androidPointDto.getPoints());
     	point.setPointCreatedAt(androidPointDto.getPoint_created_at());

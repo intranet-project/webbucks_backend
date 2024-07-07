@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webbucks.admin.Service.ReactOrderService;
 import com.webbucks.admin.Service.ReactSalesService;
 import com.webbucks.admin.dto.ReactSalesDto;
 
@@ -18,14 +19,21 @@ import com.webbucks.admin.dto.ReactSalesDto;
 @RequestMapping(value = "/api/v1")
 public class ReactSalesController {
 	private final ReactSalesService salesService;
+	private final ReactOrderService orderService;
 	
-	public ReactSalesController(ReactSalesService salesService) {
+	public ReactSalesController(ReactSalesService salesService, ReactOrderService orderService) {
 		this.salesService = salesService;
+		this.orderService = orderService;
 	}
 	
 	@GetMapping("/sales/list")
     public ResponseEntity<ArrayList<ReactSalesDto>> listSales() {
         return new ResponseEntity<ArrayList<ReactSalesDto>>(salesService.selectSales((long)1), HttpStatus.OK); 
+    }
+	
+	@GetMapping("/sales/listOrder")
+    public ResponseEntity<ArrayList<ReactSalesDto>> orderSales() {
+        return new ResponseEntity<ArrayList<ReactSalesDto>>(orderService.SalesList((long)1), HttpStatus.OK); 
     }
 	
 	//안드로이드와 api통신 떄 사용해야하는듯

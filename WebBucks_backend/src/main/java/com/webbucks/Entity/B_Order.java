@@ -24,7 +24,7 @@ public class B_Order {
     private Long b_orderId; // 주문ID
     
 	@ManyToOne
-    @JoinColumn(name = "menu_id", nullable = true)
+    @JoinColumn(name = "menu_id", nullable = false)
     private Menu menu; // 메뉴ID
 
     @ManyToOne
@@ -36,17 +36,17 @@ public class B_Order {
     private Store store;	// 매장ID   
     
     @Column(name = "order_quantity", nullable = false)
-    private int b_order_quantity;	// 주문 상태
+    private int order_quantity;	// 주문 수량
     
     @Column(name = "b_order_points_used", nullable = true)
-    private int b_orderPointsUsed;	// 사용된 포인트 
+    private int orderPointsUsed;	// 사용된 포인트 
     
     @Column(name = "b_order_state", nullable = false)
-    private String b_orderState;	// 주문 상태
+    private String orderState;	// 주문 상태
     
     @Column(name = "b_order_created_at", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date b_orderCreatedAt;	// 주문 일자
+    private Date orderCreatedAt;	// 주문 일자
     
     
 }

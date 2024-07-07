@@ -12,9 +12,11 @@ import com.webbucks.Entity.B_Order;
 import com.webbucks.Entity.B_OrderState;
 import com.webbucks.Entity.Customer;
 import com.webbucks.Entity.Menu;
+import com.webbucks.Entity.Sales;
 import com.webbucks.Entity.Store;
 import com.webbucks.Repository.B_OrderRepository;
 import com.webbucks.Repository.B_OrderStateRepository;
+import com.webbucks.Repository.SaleRepository;
 import com.webbucks.admin.dto.AndroidOrderDto;
 
 @Service
@@ -22,6 +24,9 @@ public class AndroidOrderServiceImpl implements AndroidOrderService {
 
     @Autowired
     private B_OrderRepository b_orderRepository;
+    
+    @Autowired
+    private SaleRepository saleRepository;
     
     @Autowired
     private B_OrderStateRepository b_orderStateRepository;
@@ -36,11 +41,11 @@ public class AndroidOrderServiceImpl implements AndroidOrderService {
 						.store_name(order.getStore().getStoreName())
 						.menu_id(order.getMenu().getMenuId())
 						.menu_name(order.getMenu().getMenuName())
-						.order_quantity(order.getB_order_quantity())
-						.order_total_amount(order.getB_orderPointsUsed())
-						.order_points_used(order.getB_orderPointsUsed())
-						.order_status(order.getB_orderState())
-						.order_created_at(order.getB_orderCreatedAt()).build())
+						.order_quantity(order.getOrder_quantity())
+						.order_total_amount(order.getOrderPointsUsed())
+						.order_points_used(order.getOrderPointsUsed())
+						.order_status(order.getOrderState())
+						.order_created_at(order.getOrderCreatedAt()).build())
 				.collect(Collectors.toList());
         return (ArrayList<AndroidOrderDto>) orderData;
     }
@@ -67,19 +72,21 @@ public class AndroidOrderServiceImpl implements AndroidOrderService {
     	order.setMenu(menu);
     	order.setCustomer(customer);
     	order.setStore(store);
-    	order.setB_order_quantity(androidOrderDto.getOrder_quantity());
-    	order.setB_orderPointsUsed(androidOrderDto.getOrder_points_used());
-    	order.setB_orderState(androidOrderDto.getOrder_status());
-    	order.setB_orderCreatedAt(androidOrderDto.getOrder_created_at());
+    	order.setOrder_quantity(androidOrderDto.getOrder_quantity());
+    	order.setOrderPointsUsed(androidOrderDto.getOrder_points_used());
+    	order.setOrderState(androidOrderDto.getOrder_status());
+    	order.setOrderCreatedAt(androidOrderDto.getOrder_created_at());
     	
     	Date now = new Date();
     	orderState.setOrder(order);
-    	orderState.setB_orderState(order.getB_orderState());
+    	orderState.setB_orderState(order.getOrderState());
     	orderState.setB_orderStateUpdateAt(now);
-    	System.out.println("여기? :" +androidOrderDto);
-    	System.out.println("여기? :" +order);
     	b_orderRepository.save(order);
     	b_orderStateRepository.save(orderState);
+    	
+    	Sales sales =  saleRepository.findByStoreStoreId(androidOrderDto.getStore_id());
+    	sales.setSaleTotalAmount(sales.getSaleTotalAmount()+(long)androidOrderDto.getOrder_points_used());
+    	saleRepository.save(sales);
         return androidOrderDto;
     }
 
