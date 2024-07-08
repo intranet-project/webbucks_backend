@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.webbucks.admin.Service.ReactOrderService;
 import com.webbucks.admin.Service.ReactSalesService;
 import com.webbucks.admin.dto.ReactSalesDto;
+import com.webbucks.admin.dto.ReactTotalSalesDto;
 
 @RestController
 @RequestMapping(value = "/api/v1")
@@ -27,8 +28,8 @@ public class ReactSalesController {
 	}
 	
 	@GetMapping("/sales/list")
-    public ResponseEntity<ArrayList<ReactSalesDto>> listSales() {
-        return new ResponseEntity<ArrayList<ReactSalesDto>>(salesService.selectSales((long)1), HttpStatus.OK); 
+    public ResponseEntity<ReactTotalSalesDto> listSales() {
+        return new ResponseEntity<ReactTotalSalesDto>(salesService.selectSales((long)1), HttpStatus.OK); 
     }
 	
 	@GetMapping("/sales/listOrder")
