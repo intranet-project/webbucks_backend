@@ -11,4 +11,5 @@ public interface AndroidStoreService {
     Store getStoreById(Long id);
     Store saveStore(Store store);
     void deleteStore(Long id);
+    String getStore();// 인트라 호출
 }
