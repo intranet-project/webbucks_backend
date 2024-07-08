@@ -3,6 +3,7 @@ package com.webbucks.admin.Service;
 import org.springframework.stereotype.Service;
 
 import com.webbucks.Entity.Sales;
+import com.webbucks.Repository.B_OrderRepository;
 import com.webbucks.Repository.SaleRepository;
 import com.webbucks.admin.dto.ReactSalesDto;
 import com.webbucks.admin.dto.ReactTotalSalesDto;
@@ -11,21 +12,26 @@ import com.webbucks.admin.dto.ReactTotalSalesDto;
 public class ReactSalesServiceImpl implements ReactSalesService {
 
 	private final SaleRepository saleRepository;
-	
-	public ReactSalesServiceImpl(SaleRepository saleRepository) {
+	private final B_OrderRepository b_orderRepository;
+	public ReactSalesServiceImpl(SaleRepository saleRepository, B_OrderRepository b_orderRepository) {
 
 		this.saleRepository = saleRepository;
+		this.b_orderRepository = b_orderRepository;
 	}
 
 	@Override
 	public ReactTotalSalesDto selectSales(Long store_id) {
-		Sales sales = saleRepository.findById(store_id).orElse(null);
+		Sales sales =  saleRepository.findByStoreStoreId(store_id);
+		long totalSales = b_orderRepository.getTotalSales(store_id);
+		sales.setSaleTotalAmount(totalSales);
+		saleRepository.save(sales);
+		
 		ReactTotalSalesDto salesData = new ReactTotalSalesDto();
 		salesData.setSalesId(sales.getSalesId());
 		salesData.setStoreId(sales.getStore().getStoreId());
 		salesData.setSaleTotalAmount(sales.getSaleTotalAmount());
 		
-		return salesData;
+    	return salesData;
 	}
 
 	@Override

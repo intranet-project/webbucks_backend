@@ -27,7 +27,7 @@ public class ReactSalesController {
 		this.orderService = orderService;
 	}
 	
-	@GetMapping("/sales/list")
+	@GetMapping("/sales/totalSales")
     public ResponseEntity<ReactTotalSalesDto> listSales() {
         return new ResponseEntity<ReactTotalSalesDto>(salesService.selectSales((long)1), HttpStatus.OK); 
     }

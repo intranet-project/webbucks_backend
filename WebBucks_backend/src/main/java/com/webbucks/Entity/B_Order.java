@@ -24,7 +24,7 @@ public class B_Order {
     private Long b_orderId; // 주문ID
     
 	@ManyToOne
-    @JoinColumn(name = "menu_id", nullable = false)
+    @JoinColumn(name = "menu_id", nullable = true)
     private Menu menu; // 메뉴ID
 
     @ManyToOne
