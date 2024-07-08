@@ -24,7 +24,7 @@ public class AndroidStoreServiceImpl implements AndroidStoreService {
     @Autowired
     private StoreRepository storeRepository;
     @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplate; // 1.1
 
     @Override
     public ArrayList<AndroidStoreDto> getAllStores() {
@@ -59,10 +59,10 @@ public class AndroidStoreServiceImpl implements AndroidStoreService {
     // 1.1
     @Override
     public String getStore() {
-        String url2= "http://localhost:9000/api/v1/intrabucks/manager/getstore";
+        String url= "http://localhost:9000/api/v1/intrabucks/manager/getstore";
         // GET 요청 보내기
         ResponseEntity<List<Store>> response = restTemplate.exchange(
-                url2,
+                url,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Store>>() {}

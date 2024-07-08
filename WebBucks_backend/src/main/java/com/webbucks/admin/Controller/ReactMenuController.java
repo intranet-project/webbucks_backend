@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.webbucks.admin.Service.ReactMenuService;
 import com.webbucks.admin.dto.ReactMenuDto;
-
+/**
+ * @author 최유빈
+ * @version 1.1 인트라넷 - 공홈 통신(인트라로부터 신규 메뉴 정보 가져오기)
+ * @since 2024-07-08
+ * */
 @RestController
 @RequestMapping(value = "/api/v1")
 public class ReactMenuController {
@@ -26,7 +30,8 @@ public class ReactMenuController {
 	
 	@GetMapping("/menu/list")
     public ResponseEntity<ArrayList<ReactMenuDto>> listMenu() {
-        return new ResponseEntity<ArrayList<ReactMenuDto>>(menuService.selectMenu(), HttpStatus.OK); 
+        menuService.getMenu(); // 1.1
+		return new ResponseEntity<ArrayList<ReactMenuDto>>(menuService.selectMenu(), HttpStatus.OK);
     }
 
 	@PutMapping("/menu/soldout/{menu_id}")
