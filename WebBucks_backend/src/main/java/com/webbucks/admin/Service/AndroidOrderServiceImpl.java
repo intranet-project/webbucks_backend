@@ -84,9 +84,6 @@ public class AndroidOrderServiceImpl implements AndroidOrderService {
     	b_orderRepository.save(order);
     	b_orderStateRepository.save(orderState);
     	
-    	Sales sales =  saleRepository.findByStoreStoreId(androidOrderDto.getStore_id());
-    	sales.setSaleTotalAmount(sales.getSaleTotalAmount()+(long)androidOrderDto.getOrder_points_used());
-    	saleRepository.save(sales);
         return androidOrderDto;
     }
 
