@@ -1,5 +1,7 @@
 package com.webbucks.admin.dto;
 
+import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,8 +13,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Builder
-public class ReactTotalSalesDto {
-	private Long salesId; //매출 ID
-	private Long storeId; // 매장 ID
-	private Long salesTotalAmount;
+public class IntraSalesDto {
+    private Long storeId;	// 매장ID
+    private Long salesAmount;	// 금액
+    private Date salesPri;	// 주문 일자
 }

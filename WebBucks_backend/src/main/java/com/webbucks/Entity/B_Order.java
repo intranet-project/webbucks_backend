@@ -1,10 +1,21 @@
 package com.webbucks.Entity;
 
-import lombok.Data;
-
-import javax.persistence.*;
-
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.Data;
 
 /**
  * 주문관리 테이블(B_Order) 엔티티로, 주문테이블에 대한 내용을 담고 있음
@@ -20,6 +31,7 @@ public class B_Order {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("order_id") // JSON 직렬화/역직렬화 시 사용할 필드 이름 매핑
     @Column(name = "b_order_id")
     private Long b_orderId; // 주문ID
     

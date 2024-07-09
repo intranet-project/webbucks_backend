@@ -44,6 +44,21 @@ public class ReactOrderServiceImpl implements ReactOrderService {
 		
 		return (ArrayList<ReactOrderDto>) orderData;
 	}
+	
+	@Override
+	public ReactOrderDto selectRecentOrder(Long cust_id) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		
+		List<B_Order> order =  b_OrderRepository.findByCustomerCustIdOrderByOrderCreatedAtDesc(cust_id);
+		ReactOrderDto reactOrderDto = new ReactOrderDto();
+		
+		reactOrderDto.setB_orderId(order.get(0).getB_orderId());
+		reactOrderDto.setCustId(order.get(0).getCustomer().getCustId());
+		reactOrderDto.setB_orderCreatedAt(sdf.format(order.get(0).getOrderCreatedAt()));
+		reactOrderDto.setMenuName(order.get(0).getMenu().getMenuName());
+		
+		return reactOrderDto;
+	}
 
 	@Override
 	public ReactOrderDto updateOrder(Long order_status_id, ReactOrderDto reactOrderDto) {
@@ -78,5 +93,7 @@ public class ReactOrderServiceImpl implements ReactOrderService {
 		
 		return (ArrayList<ReactSalesDto>) orderData;
 	}
+
+	
 
 }

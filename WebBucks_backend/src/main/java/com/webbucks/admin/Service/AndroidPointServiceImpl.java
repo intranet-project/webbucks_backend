@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.webbucks.Entity.Category;
 import com.webbucks.Entity.Customer;
 import com.webbucks.Entity.Point;
 import com.webbucks.Repository.PointRepository;
@@ -47,8 +46,16 @@ public class AndroidPointServiceImpl implements AndroidPointService {
     }
 
     @Override
-    public Point getPointsById(Long id) {
-        return pointRepository.findById(id).orElse(null);
+    public AndroidPointDto getPointsById(Long id) {
+    	Point point =  pointRepository.findByCustomerCustId(id);
+    	AndroidPointDto androidPointDto = new AndroidPointDto();
+    	androidPointDto.setPoint_id(point.getPointId());
+    	androidPointDto.setCust_id(point.getCustomer().getCustId());
+    	androidPointDto.setPoints(point.getPoints());
+    	androidPointDto.setPoint_created_at(point.getPointCreatedAt());
+    	androidPointDto.setPoint_update_at(point.getPointUpdateAt());
+    	
+        return androidPointDto;
     }
 
     @Override

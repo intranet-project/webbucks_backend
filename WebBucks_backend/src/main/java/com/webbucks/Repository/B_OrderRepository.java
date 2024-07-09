@@ -18,7 +18,7 @@ import com.webbucks.Entity.B_Order;
 public interface B_OrderRepository extends JpaRepository<B_Order, Long>{
 	public List<B_Order> findByStoreStoreId(Long store_Id);
 	public List<B_Order> findByStoreStoreIdAndOrderState(Long store_Id, String orderState);
-	
+	public List<B_Order> findByCustomerCustIdOrderByOrderCreatedAtDesc(Long cust_Id);
 	@Query("SELECT SUM(o.orderPointsUsed) FROM B_Order o WHERE o.orderState != '취소' AND o.store.storeId = :storeId")
     Long getTotalSales(@Param("storeId") Long storeId);
 }

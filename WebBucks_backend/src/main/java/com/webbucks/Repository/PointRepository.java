@@ -12,5 +12,5 @@ import com.webbucks.Entity.Point;
  * **/
 
 public interface PointRepository extends JpaRepository<Point, Long>{
-
+	Point findByCustomerCustId(Long custId);
 }
