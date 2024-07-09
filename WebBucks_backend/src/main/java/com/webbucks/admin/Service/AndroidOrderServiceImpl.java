@@ -12,7 +12,6 @@ import com.webbucks.Entity.B_Order;
 import com.webbucks.Entity.B_OrderState;
 import com.webbucks.Entity.Customer;
 import com.webbucks.Entity.Menu;
-import com.webbucks.Entity.Sales;
 import com.webbucks.Entity.Store;
 import com.webbucks.Repository.B_OrderRepository;
 import com.webbucks.Repository.B_OrderStateRepository;

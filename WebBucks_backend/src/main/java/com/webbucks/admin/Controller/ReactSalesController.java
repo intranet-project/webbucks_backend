@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.webbucks.admin.Service.ReactOrderService;
 import com.webbucks.admin.Service.ReactSalesService;
+import com.webbucks.admin.dto.IntraSalesDto;
 import com.webbucks.admin.dto.ReactSalesDto;
 import com.webbucks.admin.dto.ReactTotalSalesDto;
 
@@ -41,5 +42,12 @@ public class ReactSalesController {
 	@PutMapping("/sales/totalsales/{store_id}") 
     public ResponseEntity<ReactSalesDto> updateSales(@PathVariable("store_id") Long store_id, @RequestBody ReactSalesDto reactSalesDto) {
         return new ResponseEntity<ReactSalesDto>(salesService.updateTotalSales(store_id,reactSalesDto), HttpStatus.OK); // 200 응답
+    }
+	
+	
+	@GetMapping("/sales") 
+    public ResponseEntity<ArrayList<IntraSalesDto>> listTotalSales() {
+		
+        return new ResponseEntity<ArrayList<IntraSalesDto>>(salesService.selectTotalSales((long)1), HttpStatus.OK); 
     }
 }

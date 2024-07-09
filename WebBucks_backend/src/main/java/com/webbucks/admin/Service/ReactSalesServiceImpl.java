@@ -1,10 +1,15 @@
 package com.webbucks.admin.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import com.webbucks.Entity.Sales;
 import com.webbucks.Repository.B_OrderRepository;
 import com.webbucks.Repository.SaleRepository;
+import com.webbucks.admin.dto.IntraSalesDto;
 import com.webbucks.admin.dto.ReactSalesDto;
 import com.webbucks.admin.dto.ReactTotalSalesDto;
 
@@ -29,7 +34,7 @@ public class ReactSalesServiceImpl implements ReactSalesService {
 		ReactTotalSalesDto salesData = new ReactTotalSalesDto();
 		salesData.setSalesId(sales.getSalesId());
 		salesData.setStoreId(sales.getStore().getStoreId());
-		salesData.setSaleTotalAmount(sales.getSaleTotalAmount());
+		salesData.setSalesTotalAmount(sales.getSaleTotalAmount());
 		
     	return salesData;
 	}
@@ -41,6 +46,17 @@ public class ReactSalesServiceImpl implements ReactSalesService {
 		sales.setSaleTotalAmount(sales.getSaleTotalAmount()+(long)reactSalesDto.getOrderPointsUsed());
 		saleRepository.save(sales);
 		return reactSalesDto;
+	}
+
+	@Override
+	public ArrayList<IntraSalesDto> selectTotalSales(Long store_id) {
+		List<IntraSalesDto> salesData = b_orderRepository.findByStoreStoreId(store_id).stream()
+				.map(order -> IntraSalesDto.builder()
+						.storeId(order.getStore().getStoreId())
+						.salesAmount((long)order.getOrderPointsUsed())
+						.salesPri(order.getOrderCreatedAt()).build())
+				.collect(Collectors.toList());
+        return (ArrayList<IntraSalesDto>) salesData;
 	}
 
 

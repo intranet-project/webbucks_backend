@@ -34,12 +34,12 @@ public class AndroidPointController {
         return ResponseEntity.ok(pointsService.getAllPoints());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Point> getPointsById(@PathVariable Long id) {
+    @GetMapping("/{id}") // 공홈 자신 포인트 확인
+    public ResponseEntity<AndroidPointDto> getPointsById(@PathVariable Long id) {
         return ResponseEntity.ok(pointsService.getPointsById(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}") 
     public ResponseEntity<Point> updatePoints(@PathVariable Long id, @RequestBody Point point) {
         point.setPointId(id);
         return ResponseEntity.ok(pointsService.updatePoints(point));
