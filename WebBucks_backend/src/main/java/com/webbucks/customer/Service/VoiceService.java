@@ -11,5 +11,5 @@ public interface VoiceService {
 
     String getAnswer(long custId);
     List<Voice> selectAllVoice();
-    String getAnswer2();
+    String getAnswerSyn();
 }
