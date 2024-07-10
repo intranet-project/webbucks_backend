@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.webbucks.Entity.B_Order;
 import com.webbucks.Entity.B_OrderState;
+import com.webbucks.Entity.Point;
 import com.webbucks.Repository.B_OrderRepository;
 import com.webbucks.Repository.B_OrderStateRepository;
+import com.webbucks.Repository.PointRepository;
 import com.webbucks.admin.dto.ReactOrderDto;
 import com.webbucks.admin.dto.ReactSalesDto;
 
@@ -20,10 +22,14 @@ public class ReactOrderServiceImpl implements ReactOrderService {
 	
 	private final B_OrderRepository b_OrderRepository;
 	private final B_OrderStateRepository b_OrderStateRepository;
+	private final PointRepository pointRepository;
 	
-	public ReactOrderServiceImpl(B_OrderStateRepository b_OrderStateRepository, B_OrderRepository b_OrderRepository) {
+	public ReactOrderServiceImpl(B_OrderStateRepository b_OrderStateRepository,
+									B_OrderRepository b_OrderRepository,
+									PointRepository pointRepository) {
 		this.b_OrderStateRepository = b_OrderStateRepository;
 		this.b_OrderRepository = b_OrderRepository;
+		this.pointRepository = pointRepository;
 	}
 	
 	@Override
@@ -73,6 +79,14 @@ public class ReactOrderServiceImpl implements ReactOrderService {
 			b_order.setOrderState(reactOrderDto.getB_orderState());
 			b_OrderStateRepository.save(b_orderState);
 			b_OrderRepository.save(b_order);
+			System.out.println("state : "+reactOrderDto.getB_orderState());
+			if(reactOrderDto.getB_orderState().equals("취소") ) {
+				Point point = pointRepository.findByCustomerCustId(reactOrderDto.getCustId());
+				System.out.println("point "+point);
+				point.setPoints(point.getPoints()+b_order.getOrderPointsUsed());
+				pointRepository.save(point);
+			}
+			
 			return reactOrderDto;
 	}
 
