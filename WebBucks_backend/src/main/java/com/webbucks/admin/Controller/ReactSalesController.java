@@ -48,6 +48,6 @@ public class ReactSalesController {
 	@GetMapping("/sales") 
     public ResponseEntity<ArrayList<IntraSalesDto>> listTotalSales() {
 		
-        return new ResponseEntity<ArrayList<IntraSalesDto>>(salesService.selectTotalSales((long)1), HttpStatus.OK); 
+        return new ResponseEntity<ArrayList<IntraSalesDto>>(salesService.selectTotalSales(), HttpStatus.OK);
     }
 }

@@ -49,8 +49,8 @@ public class ReactSalesServiceImpl implements ReactSalesService {
 	}
 
 	@Override
-	public ArrayList<IntraSalesDto> selectTotalSales(Long store_id) {
-		List<IntraSalesDto> salesData = b_orderRepository.findByStoreStoreId(store_id).stream()
+	public ArrayList<IntraSalesDto> selectTotalSales() {
+		List<IntraSalesDto> salesData = b_orderRepository.findAll().stream()
 				.map(order -> IntraSalesDto.builder()
 						.storeId(order.getStore().getStoreId())
 						.salesAmount((long)order.getOrderPointsUsed())

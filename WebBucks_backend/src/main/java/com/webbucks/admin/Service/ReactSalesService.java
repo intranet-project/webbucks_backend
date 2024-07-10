@@ -9,5 +9,5 @@ import com.webbucks.admin.dto.ReactTotalSalesDto;
 public interface ReactSalesService {
 	ReactTotalSalesDto selectSales(Long store_id);
 	ReactSalesDto updateTotalSales(Long store_id, ReactSalesDto reactSalesDto);
-	ArrayList<IntraSalesDto> selectTotalSales(Long store_id);
+	ArrayList<IntraSalesDto> selectTotalSales();
 }

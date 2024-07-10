@@ -30,7 +30,7 @@ public class ReactMenuController {
 	
 	@GetMapping("/menu/list")
     public ResponseEntity<ArrayList<ReactMenuDto>> listMenu() {
-        //menuService.getMenu(); // 1.1
+        menuService.getMenu(); // 1.1
 		return new ResponseEntity<ArrayList<ReactMenuDto>>(menuService.selectMenu(), HttpStatus.OK);
     }
 
