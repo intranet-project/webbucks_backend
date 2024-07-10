@@ -77,8 +77,8 @@ public class VoiceServiceImpl implements VoiceService {
     }
 
     @Override
-    public String getAnswer2() {
-        String url = "http://localhost:9000/api/v1/intrabucks/customer/getanswer2";
+    public String getAnswerSyn() {
+        String url = "http://localhost:9000/api/v1/intrabucks/customer/getanswerSyn";
         ResponseEntity<List<Voice>> response = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
@@ -86,7 +86,7 @@ public class VoiceServiceImpl implements VoiceService {
                 new ParameterizedTypeReference<List<Voice>>() {}
         );
         List<Voice> voices = response.getBody();
-        voiceRepository.saveAll(voices);
+       voiceRepository.saveAll(voices);
         return "Success";
     }
 

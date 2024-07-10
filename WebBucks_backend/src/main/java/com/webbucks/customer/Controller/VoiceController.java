@@ -49,9 +49,9 @@ public class VoiceController {
         return voiceService.selectAllVoice();
     }
     /* 인트라넷, 공홈 Voice 테이블 동기화*/
-    @GetMapping("/answer2")
-    public List<Voice> answer2() {
-        voiceService.getAnswer2();
+    @GetMapping("/answerSyn")
+    public List<Voice> answerSyn() {
+        voiceService.getAnswerSyn();
         return voiceService.selectAllVoice();
     }
 
